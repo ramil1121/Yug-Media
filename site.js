@@ -23,7 +23,11 @@
       <div class="pill"></div>
       <nav class="links" aria-label="Разделы сайта">
         <button class="burger" type="button" aria-expanded="false">МЕНЮ</button>
-        <div class="menu">${pages.map(makeLink).join("")}</div>
+        <div class="menu">
+          <div class="menu-group">${pages.slice(0,5).map(makeLink).join("")}</div>
+          <div class="menu-gap" aria-hidden="true"></div>
+          <div class="menu-group">${pages.slice(5).map(makeLink).join("")}</div>
+        </div>
       </nav>
       <img class="top" src="top.png" alt="Горожанин ЮГ">
     </div>
