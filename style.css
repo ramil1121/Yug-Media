@@ -118,35 +118,42 @@ body {
   color: #5a6280;
 }
 
-/* Общие стили для плавающих листочков по бокам (крупные, без фона, с фоновой картинкой-листком) */
+/* Общий вид листочков (по 1 новости в каждом) */
 .sidebar {
   position: fixed !important;
-  width: 340px !important;
+  width: 310px !important;
   background: transparent url("side-bg.png") no-repeat center top !important;
   background-size: 100% 100% !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 48px 32px 38px !important;
+  padding: 40px 24px 30px !important;
   z-index: 100 !important;
 }
 
-/* Левый листок: выше, чуть с наклоном влево */
-.sidebar-left {
+/* Левая карточка №1 (выше) */
+.sidebar-left-1 {
   left: 15px !important;
-  top: 90px !important;
-  transform: rotate(-2deg);
+  top: 85px !important;
+  transform: rotate(-2.5deg);
 }
 
-/* Правый листок: ниже, чуть с наклоном вправо (размещаем по правому краю) */
-.sidebar-right {
-  right: 15px !important;
-  top: 180px !important;
+/* Левая карточка №2 (ниже первой, смещена правее) */
+.sidebar-left-2 {
+  left: 35px !important;
+  top: 395px !important;
   transform: rotate(2deg);
 }
 
+/* Правая карточка (на среднем уровне, с наклоном) */
+.sidebar-right-1 {
+  right: 20px !important;
+  top: 150px !important;
+  transform: rotate(2.5deg);
+}
+
 .sidebar h2 {
-  margin: 0 0 14px !important;
-  font: 700 22px/1.2 var(--head) !important;
+  margin: 0 0 10px !important;
+  font: 700 19px/1.2 var(--head) !important;
   color: var(--navy) !important;
   text-align: center;
 }
@@ -158,18 +165,17 @@ body {
   background: #f5f7fb;
   border: 1.5px solid #dbe1ee;
   border-radius: 10px;
-  padding: 11px;
-  margin-bottom: 12px;
+  padding: 10px;
+  margin-bottom: 0;
   transition: transform 0.15s;
 }
 
-.side-card:last-child { margin-bottom: 0; }
 .side-card:hover { transform: translateY(-2px); }
 
 .side-card img {
   display: block;
   width: 100%;
-  height: 125px;
+  height: 110px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -177,7 +183,7 @@ body {
 
 .side-category {
   display: block;
-  font: 700 12px var(--head);
+  font: 700 11px var(--head);
   text-transform: uppercase;
   color: var(--red);
   margin-bottom: 4px;
@@ -185,7 +191,7 @@ body {
 
 .side-card strong {
   display: block;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.35;
 }
 
@@ -255,13 +261,13 @@ p { margin: 0 0 14px; }
 }
 .video iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; }
 
-/* Адаптивность для экранов, где сайдбары могут наложиться на центр */
+/* Адаптивность для мобильных и узких экранов */
 @media (max-width: 1500px) {
   .sidebar {
     position: static !important;
     transform: none !important;
     width: min(100%, var(--W)) !important;
-    margin: 24px auto !important;
+    margin: 20px auto !important;
   }
 }
 
