@@ -118,7 +118,7 @@ body {
   color: #5a6280;
 }
 
-/* Карточки (размер ~380px, с хорошим отступом друг от друга по вертикали) */
+/* Общие стили карточек */
 .sidebar {
   position: fixed !important;
   width: 380px !important;
@@ -130,20 +130,20 @@ body {
   z-index: 100 !important;
 }
 
-/* Левая карточка №1 (выше) */
+/* Левая карточка №1 (выше, сдвинута чуть левее) */
 .sidebar-left-1 {
-  right: calc(50% + 400px) !important;
+  right: calc(50% + 430px) !important;
   left: auto !important;
   top: 75px !important;
-  transform: rotate(-2deg);
+  transform: rotate(-3deg);
 }
 
-/* Левая карточка №2 (ниже первой, с гарантированным зазором, чтобы не пересекались) */
+/* Левая карточка №2 (ниже, сдвинута чуть правее к центру) */
 .sidebar-left-2 {
-  right: calc(50% + 400px) !important;
+  right: calc(50% + 375px) !important;
   left: auto !important;
   top: 450px !important;
-  transform: rotate(1.5deg);
+  transform: rotate(2.5deg);
 }
 
 /* Правая карточка */
