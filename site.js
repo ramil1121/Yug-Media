@@ -7,7 +7,8 @@
   ];
   const stories = [
     {title:"Почему жительница Темрюка обратилась за помощью к злоумышленникам",category:"Криминал",image:"news-temryuk.jpg",href:"crime.html"},
-    {title:"Семье пострадавших при атаке в Новороссийске девочек дадут жильё",category:"Происшествия",image:"news-novorossiysk.jpg",href:"incidents.html"}
+    {title:"Семье пострадавших при атаке в Новороссийске девочек дадут жильё",category:"Происшествия",image:"news-novorossiysk.jpg",href:"incidents.html"},
+    {title:"В Краснодарском крае открылся новый молодежный центр",category:"Общество",image:"news-temryuk.jpg",href:"news.html"}
   ];
   const current = location.pathname.split("/").pop() || "index.html";
   const makeLink = ([file,label]) => '<a href="'+file+'"'+(file===current?' class="on" aria-current="page"':'')+'>'+label+'</a>';
@@ -33,17 +34,29 @@
   shell.appendChild(sheet);
   sheet.querySelector(".sheet-body").appendChild(main);
 
-  const sidebar = document.createElement("aside");
-  sidebar.className = "sidebar";
-  sidebar.setAttribute("aria-label","Читайте также");
-  const randomStories = stories.slice().sort(() => Math.random() - 0.5);
-  sidebar.innerHTML = '<h2>Читайте также</h2>' + randomStories.map(story => `
+  // Создаем левый блок (первые 2 новости)
+  const leftSidebar = document.createElement("aside");
+  leftSidebar.className = "sidebar sidebar-left";
+  leftSidebar.setAttribute("aria-label","Читайте также");
+  leftSidebar.innerHTML = '<h2>Читайте также</h2>' + stories.slice(0, 2).map(story => `
     <a class="side-card" href="${story.href}">
       <img src="${story.image}" alt="">
       <span class="side-category">${story.category}</span>
       <strong>${story.title}</strong>
     </a>`).join("");
-  shell.appendChild(sidebar);
+  shell.appendChild(leftSidebar);
+
+  // Создаем правый блок (3-я новость + дубль для объема)
+  const rightSidebar = document.createElement("aside");
+  rightSidebar.className = "sidebar sidebar-right";
+  rightSidebar.setAttribute("aria-label","Интересное");
+  rightSidebar.innerHTML = '<h2>Рекомендуем</h2>' + [stories[2], stories[0]].map(story => `
+    <a class="side-card" href="${story.href}">
+      <img src="${story.image}" alt="">
+      <span class="side-category">${story.category}</span>
+      <strong>${story.title}</strong>
+    </a>`).join("");
+  shell.appendChild(rightSidebar);
 
   const nav = sheet.querySelector(".links");
   const burger = sheet.querySelector(".burger");
