@@ -23,11 +23,7 @@
       <div class="pill"></div>
       <nav class="links" aria-label="Разделы сайта">
         <button class="burger" type="button" aria-expanded="false">МЕНЮ</button>
-        <div class="menu">
-          <div class="menu-group">${pages.slice(0,5).map(makeLink).join("")}</div>
-          <div class="menu-gap" aria-hidden="true"></div>
-          <div class="menu-group">${pages.slice(5).map(makeLink).join("")}</div>
-        </div>
+        <div class="menu">${pages.map(makeLink).join("")}</div>
       </nav>
       <img class="top" src="top.png" alt="Горожанин ЮГ">
     </div>
@@ -40,7 +36,7 @@
   const sidebar = document.createElement("aside");
   sidebar.className = "sidebar";
   sidebar.setAttribute("aria-label","Читайте также");
-  const randomStories = stories; // Keep the sidebar order identical on every page.
+  const randomStories = stories.slice().sort(() => Math.random() - 0.5);
   sidebar.innerHTML = '<h2>Читайте также</h2>' + randomStories.map(story => `
     <a class="side-card" href="${story.href}">
       <img src="${story.image}" alt="">
