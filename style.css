@@ -118,42 +118,45 @@ body {
   color: #5a6280;
 }
 
-/* Общий вид листочков (по 1 новости в каждом) */
+/* Увеличенные боковые карточки (в ~1.6 раза шире) */
 .sidebar {
   position: fixed !important;
-  width: 310px !important;
+  width: 460px !important;
   background: transparent url("side-bg.png") no-repeat center top !important;
   background-size: 100% 100% !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 40px 24px 30px !important;
+  padding: 56px 36px 44px !important;
   z-index: 100 !important;
 }
 
 /* Левая карточка №1 (выше) */
 .sidebar-left-1 {
-  left: 15px !important;
-  top: 85px !important;
+  right: calc(50% + 390px) !important;
+  left: auto !important;
+  top: 80px !important;
   transform: rotate(-2.5deg);
 }
 
-/* Левая карточка №2 (ниже первой, смещена правее) */
+/* Левая карточка №2 (ниже первой) */
 .sidebar-left-2 {
-  left: 35px !important;
-  top: 395px !important;
+  right: calc(50% + 390px) !important;
+  left: auto !important;
+  top: 420px !important;
   transform: rotate(2deg);
 }
 
-/* Правая карточка (на среднем уровне, с наклоном) */
+/* Правая карточка */
 .sidebar-right-1 {
-  right: 20px !important;
-  top: 150px !important;
+  left: calc(50% + 390px) !important;
+  right: auto !important;
+  top: 130px !important;
   transform: rotate(2.5deg);
 }
 
 .sidebar h2 {
-  margin: 0 0 10px !important;
-  font: 700 19px/1.2 var(--head) !important;
+  margin: 0 0 14px !important;
+  font: 700 24px/1.2 var(--head) !important;
   color: var(--navy) !important;
   text-align: center;
 }
@@ -164,8 +167,8 @@ body {
   color: var(--ink);
   background: #f5f7fb;
   border: 1.5px solid #dbe1ee;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 12px;
+  padding: 14px;
   margin-bottom: 0;
   transition: transform 0.15s;
 }
@@ -175,23 +178,23 @@ body {
 .side-card img {
   display: block;
   width: 100%;
-  height: 110px;
+  height: 175px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  border-radius: 10px;
+  margin-bottom: 12px;
 }
 
 .side-category {
   display: block;
-  font: 700 11px var(--head);
+  font: 700 13px var(--head);
   text-transform: uppercase;
   color: var(--red);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .side-card strong {
   display: block;
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.35;
 }
 
@@ -261,13 +264,15 @@ p { margin: 0 0 14px; }
 }
 .video iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; }
 
-/* Адаптивность для мобильных и узких экранов */
-@media (max-width: 1500px) {
+/* Адаптивность для широких и узких экранов (если монитор узкий, карточки автоматически встают друг за другом) */
+@media (max-width: 1700px) {
   .sidebar {
     position: static !important;
     transform: none !important;
     width: min(100%, var(--W)) !important;
-    margin: 20px auto !important;
+    margin: 24px auto !important;
+    right: auto !important;
+    left: auto !important;
   }
 }
 
