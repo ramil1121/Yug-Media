@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Название моего сайта</title>
+  <meta name="description" content="Короткое описание сайта для Google и Яндекса">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #222;
+    }
+    header {
+      background: #2b2b2b;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Название моего сайта</h1>
+    <p>Коротко о том, чем занимается сайт</p>
+  </header>
+  <main>
+    <h2>О нас</h2>
+    <p>Здесь пишешь текст о себе или о проекте.</p>
+  </main>
+</body>
+</html>
