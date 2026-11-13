@@ -8,29 +8,25 @@
   --head: "Oswald", "Arial Narrow", Impact, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  padding: 72px 16px 40px;
+  padding: 74px 16px 40px;
   background: var(--bg);
   color: var(--ink);
   font: 17px/1.6 Arial, Helvetica, sans-serif;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* Контейнер на всю ширину экрана */
+/* Общий каркас */
 .page-layout {
+  position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  min-height: 100vh;
 }
 
-/* Лист с рукой строго по центру экрана */
+/* Главный лист строго по центру */
 .sheet {
   width: min(100%, var(--W));
   margin: 0 auto;
@@ -38,6 +34,7 @@ body {
 
 .sheet-top {
   position: relative;
+  margin-top: 0;
 }
 
 .sheet-top .top {
@@ -49,19 +46,18 @@ body {
   pointer-events: none;
 }
 
-/* Синяя полоса и кнопки — в самом верху экрана, выше кулака */
-.pill,
-.links {
-  position: fixed;
-  left: 50%;
-  top: 12px;
-  transform: translateX(-50%);
-  width: min(calc(100vw - 24px), 1360px);
-  height: 46px;
+/* Синее меню закреплено НАВЕРХУ экрана, поверх всего, не задевая руку */
+.pill, .links {
+  position: fixed !important;
+  left: 50% !important;
+  top: 12px !important;
+  transform: translateX(-50%) !important;
+  width: min(calc(100vw - 24px), 1360px) !important;
+  height: 46px !important;
 }
 
 .pill {
-  z-index: 998;
+  z-index: 9998 !important;
   border-radius: 999px;
   border: 2px solid #081646;
   background: linear-gradient(#2a52c4, var(--navy2));
@@ -69,16 +65,16 @@ body {
 }
 
 .links {
-  z-index: 999;
+  z-index: 9999 !important;
   pointer-events: none;
 }
 
 .menu {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100%;
-  padding: 0 16px;
+  display: flex !important;
+  justify-content: space-evenly !important;
+  align-items: center !important;
+  height: 100% !important;
+  padding: 0 16px !important;
   gap: 4px;
 }
 
@@ -94,14 +90,11 @@ body {
   white-space: nowrap;
 }
 
-.menu a:hover,
-.menu a.on {
+.menu a:hover, .menu a.on {
   background: var(--red);
 }
 
-.burger {
-  display: none;
-}
+.burger { display: none; }
 
 /* Тело и низ листа */
 .sheet-body {
@@ -117,16 +110,10 @@ body {
   margin-top: -1px;
 }
 
-.sheet-bottom img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
+.sheet-bottom img { display: block; width: 100%; height: auto; }
 .sheet-bottom p {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   bottom: 26%;
   margin: 0;
   text-align: center;
@@ -134,19 +121,19 @@ body {
   color: #5a6280;
 }
 
-/* Блок «Читайте также» — прижат к правому краю окна */
+/* Блок «Читайте также» — закреплен СПРАВА на экранах шире 1300px */
 .sidebar {
   position: fixed;
   right: 20px;
-  top: 76px;
+  top: 74px;
   width: 260px;
-  max-height: calc(100vh - 96px);
+  max-height: calc(100vh - 90px);
   overflow-y: auto;
   background: #fff;
   border-radius: 14px;
   padding: 16px;
   box-shadow: 0 6px 20px rgba(13, 34, 96, 0.12);
-  z-index: 50;
+  z-index: 100;
 }
 
 .sidebar h2 {
@@ -165,14 +152,12 @@ body {
   margin-bottom: 12px;
 }
 
-.side-card:last-child {
-  margin-bottom: 0;
-}
+.side-card:last-child { margin-bottom: 0; }
 
 .side-card img {
   display: block;
   width: 100%;
-  height: 115px;
+  height: 110px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -192,7 +177,7 @@ body {
   line-height: 1.35;
 }
 
-/* Сетка карточек на главной */
+/* Сетка новостей внутри листа */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -209,35 +194,11 @@ body {
   overflow: hidden;
 }
 
-.news-card img {
-  display: block;
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.news-card-text {
-  padding: 12px;
-}
-
-.news-category {
-  display: block;
-  font: 700 11px var(--head);
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 4px;
-}
-
-.news-card h3 {
-  margin: 0 0 8px;
-  font-size: 15px;
-  line-height: 1.35;
-}
-
-.news-date {
-  font-size: 12px;
-  color: #6b738f;
-}
+.news-card img { display: block; width: 100%; height: 150px; object-fit: cover; }
+.news-card-text { padding: 12px; }
+.news-category { display: block; font: 700 11px var(--head); text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+.news-card h3 { margin: 0 0 8px; font-size: 15px; line-height: 1.35; }
+.news-date { font-size: 12px; color: #6b738f; }
 
 h1 {
   margin: 6px 0 16px;
@@ -253,9 +214,7 @@ h1 {
   color: var(--navy);
 }
 
-p {
-  margin: 0 0 14px;
-}
+p { margin: 0 0 14px; }
 
 .btn {
   display: inline-block;
@@ -268,13 +227,8 @@ p {
   text-decoration: none;
 }
 
-.btn.red {
-  background: var(--red);
-}
-
-.btn:hover {
-  background: var(--ink);
-}
+.btn.red { background: var(--red); }
+.btn:hover { background: var(--ink); }
 
 .video {
   aspect-ratio: 16/9;
@@ -287,79 +241,56 @@ p {
   text-align: center;
   padding: 12px;
 }
+.video iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; }
 
-.video iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 10px;
-}
-
-@media (max-width: 1340px) {
-  .page-layout {
-    flex-direction: column;
-    align-items: center;
-  }
+/* Адаптивность для средних и мобильных экранов */
+@media (max-width: 1300px) {
   .sidebar {
-    position: static;
-    width: min(100%, var(--W));
-    max-height: none;
-    margin-top: 24px;
+    position: static !important;
+    width: min(100%, var(--W)) !important;
+    margin: 24px auto 0 !important;
+    max-height: none !important;
   }
 }
 
 @media (max-width: 960px) {
   .menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    width: min(270px, calc(100vw - 24px));
-    height: auto;
-    padding: 10px;
-    flex-direction: column;
-    align-items: stretch;
-    background: var(--navy2);
-    border: 2px solid #081646;
-    border-radius: 14px;
-    pointer-events: auto;
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    right: 0 !important;
+    width: min(270px, calc(100vw - 24px)) !important;
+    height: auto !important;
+    padding: 10px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    background: var(--navy2) !important;
+    border: 2px solid #081646 !important;
+    border-radius: 14px !important;
+    pointer-events: auto !important;
   }
-  .open .menu {
-    display: flex;
-  }
-  .menu a {
-    display: block;
-    font-size: 15px;
-    padding: 10px 14px;
-  }
+  .open .menu { display: flex !important; }
+  .menu a { display: block !important; font-size: 15px !important; padding: 10px 14px !important; }
   .burger {
-    display: block;
-    pointer-events: auto;
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 0;
-    border-radius: 999px;
-    padding: 6px 16px;
-    background: var(--red);
-    color: #fff;
-    font: 500 13px var(--head);
-    cursor: pointer;
+    display: block !important;
+    pointer-events: auto !important;
+    position: absolute !important;
+    right: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    padding: 6px 16px !important;
+    background: var(--red) !important;
+    color: #fff !important;
+    font: 500 13px var(--head) !important;
+    cursor: pointer !important;
   }
 }
 
 @media (max-width: 560px) {
-  body {
-    font-size: 16px;
-  }
-  h1 {
-    font-size: 26px;
-  }
-  .sheet-body {
-    padding: 2px 9%;
-  }
-  .news-grid {
-    grid-template-columns: 1fr;
-  }
+  body { font-size: 16px; }
+  h1 { font-size: 26px; }
+  .sheet-body { padding: 2px 9%; }
+  .news-grid { grid-template-columns: 1fr; }
 }
