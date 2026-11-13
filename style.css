@@ -14,34 +14,30 @@
 
 body {
   margin: 0;
-  padding: 68px 16px 40px; /* Сверху место под поднятое синее меню */
+  padding: 72px 16px 40px;
   background: var(--bg);
   color: var(--ink);
   font: 17px/1.6 Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Общий макет: лист ровно по центру, сайдбар вынесен направо */
+/* Контейнер на всю ширину экрана */
 .page-layout {
-  position: relative;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
-/* Главный лист с рукой строго посередине */
+/* Лист с рукой строго по центру экрана */
 .sheet {
   width: min(100%, var(--W));
   margin: 0 auto;
-  flex-shrink: 0;
 }
 
 .sheet-top {
   position: relative;
-  margin-top: 0;
 }
 
 .sheet-top .top {
@@ -53,7 +49,7 @@ body {
   pointer-events: none;
 }
 
-/* Синяя плашка и кнопки меню — подняты на самый верх поверх всего */
+/* Синяя полоса и кнопки — в самом верху экрана, выше кулака */
 .pill,
 .links {
   position: fixed;
@@ -96,7 +92,6 @@ body {
   padding: 6px 11px;
   border-radius: 999px;
   white-space: nowrap;
-  transition: background 0.15s;
 }
 
 .menu a:hover,
@@ -139,17 +134,19 @@ body {
   color: #5a6280;
 }
 
-/* Правый блок «Читайте также» — прижат направо и не сдвигает центр */
+/* Блок «Читайте также» — прижат к правому краю окна */
 .sidebar {
-  position: absolute;
-  right: 12px;
-  top: 24px;
+  position: fixed;
+  right: 20px;
+  top: 76px;
   width: 260px;
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
   background: #fff;
   border-radius: 14px;
   padding: 16px;
-  box-shadow: 0 6px 20px rgba(13, 34, 96, 0.1);
-  z-index: 5;
+  box-shadow: 0 6px 20px rgba(13, 34, 96, 0.12);
+  z-index: 50;
 }
 
 .sidebar h2 {
@@ -166,21 +163,16 @@ body {
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 12px;
-  transition: transform 0.15s;
 }
 
 .side-card:last-child {
   margin-bottom: 0;
 }
 
-.side-card:hover {
-  transform: translateY(-2px);
-}
-
 .side-card img {
   display: block;
   width: 100%;
-  height: 120px;
+  height: 115px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -200,7 +192,7 @@ body {
   line-height: 1.35;
 }
 
-/* Карточки новостей внутри листа */
+/* Сетка карточек на главной */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -247,7 +239,6 @@ body {
   color: #6b738f;
 }
 
-/* Типографика и кнопки */
 h1 {
   margin: 6px 0 16px;
   padding-left: 14px;
@@ -304,14 +295,7 @@ p {
   border-radius: 10px;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid var(--red);
-  outline-offset: 3px;
-}
-
-/* Адаптация под узкие экраны, чтобы сайдбар не наезжал на центральный лист */
-@media (max-width: 1320px) {
+@media (max-width: 1340px) {
   .page-layout {
     flex-direction: column;
     align-items: center;
@@ -319,6 +303,7 @@ button:focus-visible {
   .sidebar {
     position: static;
     width: min(100%, var(--W));
+    max-height: none;
     margin-top: 24px;
   }
 }
