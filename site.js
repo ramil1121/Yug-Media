@@ -34,29 +34,26 @@
   shell.appendChild(sheet);
   sheet.querySelector(".sheet-body").appendChild(main);
 
-  // Создаем левый блок (первые 2 новости)
-  const leftSidebar = document.createElement("aside");
-  leftSidebar.className = "sidebar sidebar-left";
-  leftSidebar.setAttribute("aria-label","Читайте также");
-  leftSidebar.innerHTML = '<h2>Читайте также</h2>' + stories.slice(0, 2).map(story => `
-    <a class="side-card" href="${story.href}">
-      <img src="${story.image}" alt="">
-      <span class="side-category">${story.category}</span>
-      <strong>${story.title}</strong>
-    </a>`).join("");
-  shell.appendChild(leftSidebar);
+  // Функция для создания одинарной карточки-листка
+  const createSidebar = (story, className, titleText) => {
+    const sb = document.createElement("aside");
+    sb.className = `sidebar ${className}`;
+    sb.setAttribute("aria-label", titleText);
+    sb.innerHTML = `<h2>${titleText}</h2>` + `
+      <a class="side-card" href="${story.href}">
+        <img src="${story.image}" alt="">
+        <span class="side-category">${story.category}</span>
+        <strong>${story.title}</strong>
+      </a>`;
+    return sb;
+  };
 
-  // Создаем правый блок (3-я новость + дубль для объема)
-  const rightSidebar = document.createElement("aside");
-  rightSidebar.className = "sidebar sidebar-right";
-  rightSidebar.setAttribute("aria-label","Интересное");
-  rightSidebar.innerHTML = '<h2>Рекомендуем</h2>' + [stories[2], stories[0]].map(story => `
-    <a class="side-card" href="${story.href}">
-      <img src="${story.image}" alt="">
-      <span class="side-category">${story.category}</span>
-      <strong>${story.title}</strong>
-    </a>`).join("");
-  shell.appendChild(rightSidebar);
+  // Добавляем две карточки слева
+  shell.appendChild(createSidebar(stories[0], "sidebar-left-1", "Читайте также"));
+  shell.appendChild(createSidebar(stories[1], "sidebar-left-2", "Популярное"));
+  
+  // Добавляем одну карточку справа
+  shell.appendChild(createSidebar(stories[2], "sidebar-right-1", "Рекомендуем"));
 
   const nav = sheet.querySelector(".links");
   const burger = sheet.querySelector(".burger");
