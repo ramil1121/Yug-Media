@@ -118,30 +118,39 @@ body {
   color: #5a6280;
 }
 
-/* Блок «Читайте также»: слева, короче, с убранным белым фоном и по центру высоты по стрелке */
+/* Общие стили для плавающих листочков по бокам (крупные, без фона, с фоновой картинкой-листком) */
 .sidebar {
   position: fixed !important;
-  left: 24px !important;
-  right: auto !important;
-  top: 50% !important;
-  transform: translateY(-40%) !important;
-  width: 280px !important;
+  width: 340px !important;
   background: transparent url("side-bg.png") no-repeat center top !important;
   background-size: 100% 100% !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 42px 26px 32px !important;
+  padding: 48px 32px 38px !important;
   z-index: 100 !important;
 }
 
+/* Левый листок: выше, чуть с наклоном влево */
+.sidebar-left {
+  left: 15px !important;
+  top: 90px !important;
+  transform: rotate(-2deg);
+}
+
+/* Правый листок: ниже, чуть с наклоном вправо (размещаем по правому краю) */
+.sidebar-right {
+  right: 15px !important;
+  top: 180px !important;
+  transform: rotate(2deg);
+}
+
 .sidebar h2 {
-  margin: 0 0 12px !important;
-  font: 700 20px/1.2 var(--head) !important;
+  margin: 0 0 14px !important;
+  font: 700 22px/1.2 var(--head) !important;
   color: var(--navy) !important;
   text-align: center;
 }
 
-/* Оставляем короче: показываем только первую карточку, остальные скрываем */
 .side-card {
   display: block;
   text-decoration: none;
@@ -149,18 +158,18 @@ body {
   background: #f5f7fb;
   border: 1.5px solid #dbe1ee;
   border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 0;
+  padding: 11px;
+  margin-bottom: 12px;
+  transition: transform 0.15s;
 }
 
-.side-card ~ .side-card {
-  display: none !important;
-}
+.side-card:last-child { margin-bottom: 0; }
+.side-card:hover { transform: translateY(-2px); }
 
 .side-card img {
   display: block;
   width: 100%;
-  height: 110px;
+  height: 125px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -168,7 +177,7 @@ body {
 
 .side-category {
   display: block;
-  font: 700 11px var(--head);
+  font: 700 12px var(--head);
   text-transform: uppercase;
   color: var(--red);
   margin-bottom: 4px;
@@ -176,7 +185,7 @@ body {
 
 .side-card strong {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.35;
 }
 
@@ -246,18 +255,13 @@ p { margin: 0 0 14px; }
 }
 .video iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; }
 
-/* Адаптивность для узких экранов */
-@media (max-width: 1380px) {
+/* Адаптивность для экранов, где сайдбары могут наложиться на центр */
+@media (max-width: 1500px) {
   .sidebar {
     position: static !important;
     transform: none !important;
     width: min(100%, var(--W)) !important;
-    margin: 24px auto 0 !important;
-    padding: 52px 42px 38px !important;
-  }
-  .side-card ~ .side-card {
-    display: block !important;
-    margin-top: 12px;
+    margin: 24px auto !important;
   }
 }
 
@@ -301,5 +305,4 @@ p { margin: 0 0 14px; }
   h1 { font-size: 26px; }
   .sheet-body { padding: 2px 9%; }
   .news-grid { grid-template-columns: 1fr; }
-  .sidebar { padding: 38px 22px 28px !important; }
 }
